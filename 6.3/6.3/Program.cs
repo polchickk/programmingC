@@ -55,12 +55,7 @@ namespace _6._3
 
         static bool IsqueenBlackStrikesWhiteQueen(string queenWhitePosition, string queenBlackPosition)
         {
-            int qx, qy, px, py;
-
-            GetCoordinates(queenWhitePosition, out qy, out qx);
-            GetCoordinates(queenBlackPosition, out py, out px);
-
-            return py - qy == 1 && Math.Abs(px - qx) == 1;
+            return IsWhiteQueenCanMove(queenWhitePosition, queenBlackPosition);
         }
 
         static bool IsWhiteQueenStrikesqueenBlack(string queenWhitePosition, string queenBlackPosition)
