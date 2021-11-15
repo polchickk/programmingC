@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 namespace _6._3
 {
     class Program
-    {// Белый ферзь и черная пешка
+    {// Белый ферзь и черный ферзь
         static void Main(string[] args)
         {
             Console.WriteLine("Введите позицию белого ферзя");
             var whiteQueenPosition = Console.ReadLine();
 
-            Console.WriteLine("Введите позицию черной пешки");
-            var blackPawnPosition = Console.ReadLine();
+            Console.WriteLine("Введите позицию черного ферзя");
+            var blackQueenPosition = Console.ReadLine();
 
-            if (!IsFiguresPositionsCorrect(whiteQueenPosition, blackPawnPosition))
+            if (!IsFiguresPositionsCorrect(whiteQueenPosition, blackQueenPosition))
             {
                 Console.WriteLine("Позиции фигур не соответствуют условиям задачи");
                 Console.ReadKey();
@@ -26,7 +26,7 @@ namespace _6._3
             Console.WriteLine("Введите ход белого ферзя");
             var move = Console.ReadLine();
 
-            if (IsQueenCanMakeSafeMove(whiteQueenPosition, blackPawnPosition, move))
+            if (IsQueenCanMakeSafeMove(whiteQueenPosition, blackQueenPosition, move))
                 Console.WriteLine($"Ферзь {whiteQueenPosition} может безопасно пойти на клетку {move}");
             else
                 Console.WriteLine($"Ферзь {whiteQueenPosition} не может пойти на клетку {move}");
@@ -34,18 +34,18 @@ namespace _6._3
             Console.ReadKey();
         }
 
-        static bool IsFiguresPositionsCorrect(string queenPosition, string pawnPosition)
+        static bool IsFiguresPositionsCorrect(string queenWhitePosition, string queenBlackPosition)
         {
-            return !IsEqualPositions(queenPosition, pawnPosition) &&
-                IsPawnPositionCorrect(pawnPosition) &&
-                !IsQueenStrikesPawn(queenPosition, pawnPosition) &&
-                !IsPawnStrikesQueen(queenPosition, pawnPosition);
+            return !IsEqualPositions(queenWhitePosition, queenBlackPosition) &&
+                IsqueenBlackPositionCorrect(queenBlackPosition) &&
+                !IsWhiteQueenStrikesqueenBlack(queenWhitePosition, queenBlackPosition) &&
+                !IsqueenBlackStrikesWhiteQueen(queenWhitePosition, queenBlackPosition);
         }
 
-        static bool IsQueenCanMakeSafeMove(string queenPosition, string pawnPosition, string move)
+        static bool IsWhiteQueenCanMakeSafeMove(string queenWhitePosition, string queenBlackPosition, string move)
         {
-            return IsQueenCanMove(queenPosition, move) &&
-                !IsPawnStrikesQueen(move, pawnPosition);
+            return IsWhiteQueenCanMove(queenWhitePosition, move) &&
+                !IsqueenBlackStrikesWhiteQueen(move, queenBlackPosition);
         }
 
         static bool IsEqualPositions(string position1, string position2)
@@ -53,33 +53,33 @@ namespace _6._3
             return position1 == position2;
         }
 
-        static bool IsPawnStrikesQueen(string queenPosition, string pawnPosition)
+        static bool IsqueenBlackStrikesWhiteQueen(string queenWhitePosition, string queenBlackPosition)
         {
             int qx, qy, px, py;
 
-            GetCoordinates(queenPosition, out qy, out qx);
-            GetCoordinates(pawnPosition, out py, out px);
+            GetCoordinates(queenWhitePosition, out qy, out qx);
+            GetCoordinates(queenBlackPosition, out py, out px);
 
             return py - qy == 1 && Math.Abs(px - qx) == 1;
         }
 
-        static bool IsQueenStrikesPawn(string queenPosition, string pawnPosition)
+        static bool IsWhiteQueenStrikesqueenBlack(string queenWhitePosition, string queenBlackPosition)
         {
-            return IsQueenCanMove(queenPosition, pawnPosition);
+            return IsWhiteQueenCanMove(queenWhitePosition, queenBlackPosition);
         }
 
-        static bool IsPawnPositionCorrect(string pawnPosition)
+        static bool  IsqueenBlackPositionCorrect(string queenBlackPosition)
         {
             int px, py;
-            GetCoordinates(pawnPosition, out py, out px);
+            GetCoordinates(queenBlackPosition, out py, out px);
 
             return py > 0 && py < 7;
         }
 
-        static bool IsQueenCanMove(string queenPosition, string move)
+        static bool IsWhiteQueenCanMove(string queenWhitePosition, string move)
         {
             int qx, qy, mx, my;
-            GetCoordinates(queenPosition, out qy, out qx);
+            GetCoordinates(queenWhitePosition, out qy, out qx);
             GetCoordinates(move, out my, out mx);
 
             return qy == my || qx == mx || Math.Abs(qy - my) == Math.Abs(qx - mx);
