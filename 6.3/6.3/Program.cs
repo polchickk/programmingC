@@ -26,7 +26,7 @@ namespace _6._3
             Console.WriteLine("Введите ход белого ферзя");
             var move = Console.ReadLine();
 
-            if (IsQueenCanMakeSafeMove(whiteQueenPosition, blackQueenPosition, move))
+            if (IsWhiteQueenCanMakeSafeMove(whiteQueenPosition, blackQueenPosition, move))
                 Console.WriteLine($"Ферзь {whiteQueenPosition} может безопасно пойти на клетку {move}");
             else
                 Console.WriteLine($"Ферзь {whiteQueenPosition} не может пойти на клетку {move}");
