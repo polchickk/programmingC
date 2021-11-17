@@ -55,7 +55,10 @@ namespace _6._3
 
         static bool IsqueenBlackStrikesWhiteQueen(string queenWhitePosition, string queenBlackPosition)
         {
-            return IsWhiteQueenCanMove(queenWhitePosition, queenBlackPosition);
+            int qx, qy, Qx, Qy;
+            GetCoordinates(queenWhitePosition,out qx,out qy);
+            GetCoordinates(queenBlackPosition, out Qx, out Qy);
+            return qy == Qy || qx == Qx || Math.Abs(qy - Qy) == Math.Abs(qx - Qx);
         }
 
         static bool IsWhiteQueenStrikesqueenBlack(string queenWhitePosition, string queenBlackPosition)
@@ -75,6 +78,14 @@ namespace _6._3
         {
             int qx, qy, mx, my;
             GetCoordinates(queenWhitePosition, out qy, out qx);
+            GetCoordinates(move, out my, out mx);
+
+            return qy == my || qx == mx || Math.Abs(qy - my) == Math.Abs(qx - mx);
+        }
+        static bool IsblackQueenCanMove(string queenBlackPosition, string move)
+        {
+            int qx, qy, mx, my;
+            GetCoordinates(queenBlackPosition, out qy, out qx);
             GetCoordinates(move, out my, out mx);
 
             return qy == my || qx == mx || Math.Abs(qy - my) == Math.Abs(qx - mx);
