@@ -14,12 +14,10 @@ namespace _8._1
             var n = int.Parse(Console.ReadLine());
             int sum = 0;
             for (var i = 1; i <= n; i++)
-            {
-                var x = (i + 1) / i;
-                sum += x;
-            }
+                sum += (i + 1) / i;
 
             Console.WriteLine(sum);
+
             Console.ReadKey();
         }
     }
