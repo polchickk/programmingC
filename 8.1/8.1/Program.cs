@@ -16,7 +16,7 @@ namespace _8._1
             for (var i = 1; i <= n; i++)
                 sum += (i + 1) / i;
 
-            Console.WriteLine(sum);
+            Console.WriteLine($"Результат: {sum}");
 
             Console.ReadKey();
         }
