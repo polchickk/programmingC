@@ -12,13 +12,17 @@ namespace task6._2
         {
             var x = InputCoordinate("абсциссу");
             var y = InputCoordinate("ординату");
+           
             Console.WriteLine($"Точка внутри области " + IsInsideArea(x, y));
+           
             Console.ReadKey();
         }
+        
         static bool IsInsideArea(double x, double y)
         {
-            return y >= 1 || x <= -3;
+            return y >= 1 || y <= -3;
         }
+       
         static double InputCoordinate(string name)
         {
             Console.WriteLine($"Введите {name} точки");
