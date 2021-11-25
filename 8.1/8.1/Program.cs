@@ -11,10 +11,12 @@ namespace _8._1
         static void Main(string[] args)
         {
             Console.WriteLine("Введите натуральное значение аргумента");
+            
             var n = int.Parse(Console.ReadLine());
-            int sum = 0;
+            double sum = 0;
+           
             for (var i = 1; i <= n; i++)
-                sum += (i + 1) / i;
+                sum += (i + 1.0) / i;
 
             Console.WriteLine($"Результат: {sum}");
 

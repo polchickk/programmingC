@@ -17,6 +17,7 @@ namespace _8._3
             {
                 Console.WriteLine("Введите целое число");
                 a = int.Parse(Console.ReadLine());
+                
                 count++;
                 sum += a;
             }
