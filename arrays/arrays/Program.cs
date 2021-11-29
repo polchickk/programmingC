@@ -31,13 +31,32 @@ namespace arrays
             Console.WriteLine(Array.BinarySearch(array,11));
             Console.WriteLine(Array.BinarySearch(array, 25));
 
+            var matrix = new int[2,3] { {2, -1, 0}, {3, 5, -4} };
+
+            Console.WriteLine($"Число строк:{matrix.GetLength(0)}");
+             Console.WriteLine($"Число столбцов:{matrix.GetLength(1)}");
+             Console.WriteLine($"Число измерений:{matrix.Rank}");
+             Console.WriteLine($"Общее число элементов:{matrix.Length}");
+           
             Console.ReadKey();
         }
 
         private static void PrintIntArray(int[] array)
         {
             for (var i = 0; i < array.Length; i++)
-                Console.WriteLine(array[i]);
+                Console.Write($"{array[i]} ");
+            
+            Console.WriteLine();
+        }
+        static void PrintInt2DArray(int[,] table)
+        {
+            for(var i = 0; i < table.GetLength(0);i++) 
+            { 
+                for(var j=0;j<table.GetLength(1);j++)
+                    Console.Write($"{table[i,j],3} ");
+                Console.WriteLine();
+            }
         }
     }
 }
+   
