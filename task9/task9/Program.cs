@@ -27,9 +27,8 @@ namespace task9
             Console.WriteLine($"квадратный корень суммы элементов массива: {GetSquareRootOfSum(numbers)}");
            
             var clone = (double[])numbers.Clone();
-            GetSin(clone);
             Console.WriteLine($"Массив синусов произведения k(целого числа) и элементов: ");
-            PrintInArray(clone);
+            PrintInArray(GetSin(clone));
 
             Console.ReadKey();
         }
