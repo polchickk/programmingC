@@ -108,8 +108,25 @@ namespace ArraysTasks
         static void ReplaceOddsWithZeroes(int[] array)
         {
             for (var i = 0; i < array.Length; i++)
-                if (array[i] % 2 != 1)
+                if (array[i] % 2 != 0)
                     array[i] = 0;
+        }
+
+        static int[] GetSortedEvens(int[] array)
+        {
+            var count = 0;
+
+            foreach (var elem in array)
+                if (elem % 2 == 0)
+                    count++;
+
+            var result = new int[count];
+            var index = 0;
+
+            foreach (var elem in array)
+                if (elem % 2 == 0)
+                    result[index++] = elem;
+
         }
     }   
 
