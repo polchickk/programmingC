@@ -17,16 +17,24 @@ namespace ArraysTasks
             for (var i = 0; i < numbers.Length; i++)
                 numbers[i] = int.Parse(input[i]);
 
-            PrintInArray(numbers);
-            Console.WriteLine($"Наибольший элемент: {GetMaxElement(numbers)}");
-            Console.WriteLine($"Сумма элементов массива: {GetSum(numbers)}");
-            
+            PrintIntArray(numbers);
+
+            try
+            {
+                Console.WriteLine($"Наибольший элемент: {GetMaxElement(numbers)}");
+                Console.WriteLine($"Сумма элементов массива: {GetSum(numbers)}");
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
             Console.Write($"\nМассив элементов через один: ");
-            PrintInArray(GetEvenIndexesElements(numbers));
+            PrintIntArray(GetEvenIndexesElements(numbers));
 
             var clone = CloneIntArray(numbers);
             Console.Write($"Массив-клон: ");
-            PrintInArray(clone);
+            PrintIntArray(clone);
 
             var answer = numbers == clone ? "Да" : "Нет";
             //string answer;
@@ -39,13 +47,15 @@ namespace ArraysTasks
 
             ReverseIntArray(clone);
             Console.Write($"Массив в обратоном порядке: ");
-            PrintInArray(clone);
+            PrintIntArray(clone);
 
+            Console.Write("Отсортированный массив четных чисел: ");
+            PrintIntArray(GetSortedEvens(numbers));
 
             Console.ReadKey();
         }
         
-        static void PrintInArray(int[] array)
+        static void PrintIntArray(int[] array)
         {
             foreach(var elem in array)
                 Console.Write($"{elem} ");
@@ -127,6 +137,18 @@ namespace ArraysTasks
                 if (elem % 2 == 0)
                     result[index++] = elem;
 
+            BubbleSort(result);
+
+            return result;
+
+        }
+
+        static void BubbleSort(int[] array)
+        {
+            for (var i = 0; i < array.Length - 1; i++)
+                for (var j = 0; j < array.Length - 1 - i; j++)
+                    if (array[j] > array[j + 1])
+                        (array[j], array[j + 1]) = (array[j + 1], array[j]);
         }
     }   
 
