@@ -8,6 +8,7 @@ namespace Arrays2DTasks
 {
     class Program
     {
+        static Random rnd = new Random();
         static void Main(string[] args)
         {
             var numbers = new[,] { { 3, -11, 8 }, { 0, 17, 5 } };
@@ -18,15 +19,18 @@ namespace Arrays2DTasks
 
             PrintTable(Transpose(numbers));
 
+            var rowNumber = rnd.Next(2, 11);
+            var columnNumber = rnd.Next(2, 11);
+
+            var matrix = new double[rowNumber, columnNumber];
+           
+            FillRandomA(matrix);
+            PrintMatrix(matrix);
+
+            FillRandomB(matrix);
+            PrintMatrix(matrix);
+
             Console.ReadKey();
-        }
-        static bool IsContainsZero(int[,] table)
-        {
-            foreach (var elem in table)
-                if (elem == 0)
-                    return true;
-          
-            return false;
         }
         static void PrintTable(int[,] table)
         {
@@ -40,6 +44,16 @@ namespace Arrays2DTasks
 
             Console.WriteLine();
         }
+
+        static bool IsContainsZero(int[,] table)
+        {
+            foreach (var elem in table)
+                if (elem == 0)
+                    return true;
+          
+            return false;
+        }
+       
         static int[,] Transpose(int[,] array)
         {
             var result = new int[array.GetLength(1), array.GetLength(0)];
@@ -49,6 +63,57 @@ namespace Arrays2DTasks
                     result[i, j] = array[j, i];
 
                     return result;
+        }
+
+        static void PrintMatrix(double[,] matrix)
+        {
+            for (var i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (var j = 0; j < matrix.GetLength(1); j++)
+                    Console.Write($"{matrix[i, j]:F5} ");
+                Console.WriteLine();
+            }
+
+            Console.WriteLine();
+        }
+
+        static void FillRandomA(double[,] matrix)
+        {
+            double sum = 0;
+
+            for(var i =0;i<matrix.GetLength(0);i++)
+                for(var j=0;j<matrix.GetLength(1);j++)
+                {
+                    do
+                    {
+                        matrix[i, j] = rnd.NextDouble();
+                    } while (matrix[i, j] == 0);
+
+                    sum += matrix[i, j];
+                }
+
+            for (var i = 0; i < matrix.GetLength(0); i++)
+                for (var j = 0; j < matrix.GetLength(1); j++)
+                    matrix[i, j] /= sum;
+        }
+
+        static void FillRandomB(double[,] matrix)
+        {
+            for (var i = 0; i < matrix.GetLength(0); i++)
+            {
+                double sum = 0;
+
+                for (var j = 0; j < matrix.GetLength(1); j++)
+                {
+                    while ((matrix[i, j] = rnd.NextDouble()) == 0) { }
+
+                    sum += matrix[i, j];
+                }
+
+                for (var j = 0; j < matrix.GetLength(1); j++)
+                    matrix[i, j] /= sum;
+            }
+                
         }
     }
 }
