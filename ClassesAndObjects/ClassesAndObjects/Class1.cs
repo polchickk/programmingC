@@ -8,10 +8,12 @@ namespace ClassesAndObjects
 {
    public class Person
     {
-        public static string Species = "Homo Sapience";
+        public readonly static string Species;
+        public readonly static string LogFileName;
        
         public string Name;
         public string Surname;
+        public int INN { get;}
         
         private int age;
         public int Age
@@ -20,6 +22,7 @@ namespace ClassesAndObjects
             {
                 return age;
             }
+           
             set
             {
                 if (value > 0)
@@ -37,18 +40,39 @@ namespace ClassesAndObjects
             }
         }
 
-        //public string GetFullName()
-        //{
-        //    return FullName;
-        //}
-
-        static void PrintSpesies()
+        public Person(string name, string surname,int age, int inn)
         {
-            Console.WriteLine(Person.Species);
+            Name = name;
+            Surname = surname;
+            Age = age;
+            INN = inn;
         }
-       public void PrintInfo()
+
+        public Person(string name, string surname, int inn) : this(name, surname, 1, inn) { }
+
+        public Person(int inn) : this("", "", inn) { }
+        
+        public Person() : this(0) { }
+
+        static Person()
         {
-            Console.WriteLine($"{Species}: {FullName}, возраст: {Age}");
+            Species="Homo Sapience";
+            LogFileName="log" + DateTime.Now.ToShortDateString() + ".txt";
+        }
+
+        ~Person()
+        {
+            Console.WriteLine($"--> Объект {FullName} уничтожен.");
+        }
+
+       public static void PrintSpesies()
+        {
+            Console.WriteLine(Species);
+        }
+      
+        public void PrintInfo()
+        {
+            Console.WriteLine($"{Species}: {FullName}, возраст: {Age}.ИНН {INN}");
         }
     }
 }

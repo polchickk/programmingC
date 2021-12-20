@@ -11,27 +11,34 @@ namespace ClassesAndObjects
         static int number = 1;
         
         static void Main(string[] args)
-        {
+        {            
             Console.WriteLine(number);
             Console.WriteLine(Person.Species);
+            Console.WriteLine(Person.LogFileName);
 
-            var peter = new Person();
+            PrintSomePersonInfo("Николай", "Романов", 25,12345);
+
+            var peter = new Person(101);
             peter.Name = "Пётр";
             peter.Surname = "Иванов";
             peter.Age = 17;
            // PrintPerson(peter);
             peter.PrintInfo();
            
-            var ann = new Person() { Name = "Anna", Surname="Sergeeva", Age = 18 };
+            var ann = new Person(102) { Name = "Anna", Surname="Sergeeva", Age = 18 };
             //PrintPerson(ann);
             ann.PrintInfo();
+
+            Person.PrintSpesies();
             
             var persons = new[] { peter, ann };
 
             foreach (var person in persons)
                 Console.WriteLine(person.FullName);
 
-            var jacob = new Person() { Name = "Яков", Surname = "Сидоров"};
+            var jacob = new Person( "Яков", "Сидоров", 103);
+            
+
             try
             {
                 jacob.Age = -20;
@@ -41,15 +48,22 @@ namespace ClassesAndObjects
                 Console.WriteLine(e.Message);
             }
 
+            jacob.Age=30;
+
+            //jacob.INN = 123456;
+
             // PrintPerson(jacob);
             jacob.PrintInfo();
 
+            var george = new Person { Name="geоrge", Age=5}; 
+            george.PrintInfo();
+
              Console.ReadKey();
         }
-
-        //static void PrintPerson(Person person)
-        //{
-        //    Console.WriteLine($"{person.Name} {person.Surname}, возраст: {person.Age}");
-        //}
+        static void PrintSomePersonInfo(string name, string surname,int age, int inn)
+        {
+            var person = new Person(name,surname,age,inn);
+            person.PrintInfo();
+        }
     }
 }
