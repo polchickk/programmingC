@@ -19,7 +19,10 @@ namespace task10
             var matrix = new int[rowNumber, columnNumber];
             FillRandom(matrix);
             PrintMatrix(matrix);
-            Average(matrix);
+            
+            var average = GetAverageByRow(matrix);
+            for (var i = 0; i < average.Length; i++)
+                Console.WriteLine($"Строка:{i,2} Среднее: {average[i]}");
          
             Console.ReadKey();
         }
@@ -45,21 +48,22 @@ namespace task10
 
         }
 
-          static void Average(int[,] matrix)
-        { 
-             for (var i = 0; i < matrix.GetLength(0); i++)
-                {
-                    var srednee = 0.0;
-                    var count = 0; 
-                    var sum = 0.0;
-                    for (var j = 0; j < matrix.GetLength(1); j++)
-                        {
-                            count+=1;
-                            sum = sum + matrix[i,j];
-                        }
-                    srednee = sum/count;
-                Console.WriteLine($"Среднее арифметическое строки: {srednee}"); 
-                }    
+         static double[] GetAverageByRow(int[,] matrix)
+        {
+            var result = new double[matrix.GetLength(0)];
+
+            for(var i = 0; i < matrix.GetLength(0); i++)
+            {
+                var srednee = 0.0;
+
+                for (var j = 0; j < matrix.GetLength(1); j++)
+                    srednee += matrix[i, j];
+
+                result[i] = srednee / matrix.GetLength(1);
+            }
+
+            return result;
+           
         }
     }
 }
