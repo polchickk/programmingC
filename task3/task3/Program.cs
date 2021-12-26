@@ -4,32 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace task1
+namespace task3
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите натуральное число");
+            Console.WriteLine("Введите натуральное четное число, большее 4");
             var number = int.Parse(Console.ReadLine());
 
-            int i = 2;
-            Console.Write($"{number} = ");
-            while (i <= number)
-            {
-                if (number % i == 0 && IsPrime(i))
+            var flag = false;
+            var number1 = 0;
+            var number2 = 0;
+
+            for (int i = 1; i < number / 2 + 1; i++)
+                if (IsPrime(i) && IsPrime(number- i))
                 {
-                    Console.Write(i);
-                    number = / i;
-                    if (number > 1)
-                        Console.Write("*");
+                    flag = true;
+                    number1 = i;
+                    number2 = number - i;
                 }
-                else
-                    i++;
-            }
-        }
-                Console.ReadKey();
-            
+
+            if (flag)
+                Console.WriteLine($"{number} = {number2} - {number1}");
+
+            Console.ReadKey();
         }
         static bool IsPrime(int number)
         {
