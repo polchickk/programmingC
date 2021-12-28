@@ -10,7 +10,7 @@ namespace task3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите натуральное четное число, большее 4");
+            Console.WriteLine("Введите натуральное четное число, большее или равное4");
             var number = int.Parse(Console.ReadLine());
 
             var flag = false;
@@ -32,16 +32,16 @@ namespace task3
         }
         static bool IsPrime(int number)
         {
-            var d = 2;
-            while (d < Math.Sqrt(number))
+            bool flag = false;
+            for (int j = 2; j <= number / 2 + 1; j++)
             {
-                if (number % d == 0)
-                    return false;
-
-                d++;
+                if (number % j == 0)
+                    flag = true;
             }
-            return true;
-
+            if (flag == false)
+                return true;
+            else
+                return false;
         }
     }
 }
