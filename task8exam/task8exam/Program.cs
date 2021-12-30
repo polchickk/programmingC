@@ -22,9 +22,10 @@ namespace task8exam
             {
                 if (number == i * i * i)
                     return true;
-                
+
             }
             return false;
         }
     }
 }
+       
