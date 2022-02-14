@@ -12,11 +12,22 @@ namespace GeometryConsole
         static void Main()
         {
             var point = new Point(1, 2);
+            PrintPoint(point);
+
+            var segment = new Segment(new Point(1, 1), new Point(3, 4));
+            PrintSegment(segment);
+
+            Console.ReadKey();
         }
 
         static void PrintPoint(Point p)
         {
-            Console.WriteLine(p);
+            Console.WriteLine($"точка ({p.X};{p.Y})");
+        }
+
+        static void PrintSegment(Segment s)
+        {
+            Console.WriteLine($"отрезок [({s.A.X};{s.A.Y}),({s.B.X};{s.B.Y})] длиной {s.Length:F3}");
         }
     }
 }
