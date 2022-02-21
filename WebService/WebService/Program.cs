@@ -19,15 +19,17 @@ namespace WebService
 
             var paul = new VipUser("Paul123", "456789", "paul@gmail.com", 2400001267907643);
 
-            var admin = new Admin("Sergey", "eryvgeu", "sergey@mail,ru", 2);
+            var admin = new Admin("Sergey", "eryvgeu", "sergey@mail,ru", 4);
 
-            var users = new[] { george, kate, john,paul };
+            var users = new[] { george, kate, john,paul,admin };
 
             object obj = new object();
             //downcast user->registereduser
             //equals сравнение(тип ссылка и тип значение), hash code(словарь), gettype(возвращает тип объекта),tostring(переводит лююой объект в строку,чтобы выводить на консоль)
             //безопасное приведение типов: var newObject = oldObject as NewType;
             //клюючевое IS NewType newObject; if(oldObject is NewType) newObject = (NewType)oldObject; else {...//do smth}/// if(ildObject is NewType) {var newObject =(NewType)oldObject;...}-if(oldObject is NewType newObject){..}
+            //одна из реализаций концепции полиморфизма - переопределение виртуальных методов: модификатор virtual; в производном классе для переопределяемого метода модификатор override
+            //base
 
             Class1 regUser = paul as Class1;
 

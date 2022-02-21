@@ -14,5 +14,11 @@ namespace WebService
         {
             this.cardnumber = cardnumber;
         }
+
+        public override void PrintInfo()
+        {
+            base.PrintInfo();
+            Console.WriteLine($"Номер карты {cardnumber}");
+        }
     }
 }
