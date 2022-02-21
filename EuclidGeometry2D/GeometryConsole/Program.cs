@@ -17,17 +17,21 @@ namespace GeometryConsole
             var segment = new Segment(new Point(1, 1), new Point(3, 4));
             PrintSegment(segment);
 
+            segment.A.X = -1;
+            PrintSegment(segment);
+
             Console.ReadKey();
         }
 
         static void PrintPoint(Point p)
         {
-            Console.WriteLine($"точка ({p.X};{p.Y})");
+            Console.WriteLine($"точка ({p.X}; {p.Y})");
         }
 
         static void PrintSegment(Segment s)
         {
-            Console.WriteLine($"отрезок [({s.A.X};{s.A.Y}),({s.B.X};{s.B.Y})] длиной {s.Length:F3}");
+            Console.WriteLine($"отрезок [({s.A.X}; {s.A.Y}), ({s.B.X}; {s.B.Y})] длиной {s.Length:F3}");
         }
     }
 }
+
