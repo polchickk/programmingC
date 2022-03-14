@@ -14,8 +14,10 @@ namespace Interface
             var plane = new Plane();
 
             IDrivable[] vehicles = new IDrivable[] { car,plane};
+          
             foreach (var vehicle in vehicles)
                 vehicle.Start();
+           
             Console.ReadKey();
         }
     }
