@@ -48,7 +48,7 @@ namespace University
                     break;
             }
 
-            Console.WriteLine($"Номер зачетной книжки: {Number}. Группа: {Group}. Институт: {Institute}. Направление обучения : {DirectionOfStudy}.");
+            Console.WriteLine($"Номер зачетной книжки: {Number}. Группа: {Group}. Институт: {Institute}. Направление обучения : {directionOfStudy}.");
         }
     }
 }
