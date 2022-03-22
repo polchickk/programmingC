@@ -26,14 +26,15 @@ namespace University.UnitTests
 
         [Test]
         public void ToString_Student_NameSpaceSurname()
-        { 
-            var polina = CreateTestStudent(); 
-          Assert.AreEqual("Polina Pavlova", polina.ToString()); 
+        {
+            var polina = CreateTestStudent();
+            Assert.AreEqual("Polina Pavlova", polina.ToString());
         }
-       
+
         private Student CreateTestStudent()
         {
-            return new Student("Polina", "Pavlova","30603","116004","УГИ", Degree.Undergraduate);
+            return new Student("Polina", "Pavlova", "30603", "116004", "УГИ", Degree.Undergraduate);
         }
     }
 }
+
