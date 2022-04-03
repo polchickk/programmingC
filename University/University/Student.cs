@@ -50,5 +50,22 @@ namespace University
 
             Console.WriteLine($"Номер зачетной книжки: {Number}. Группа: {Group}. Институт: {Institute}. Направление обучения : {directionOfStudy}.");
         }
+
+        public virtual string[] GetInfo()
+        {
+            var info = new string[2];
+            info[0] = ToString();
+
+            string directionOfStudy;
+            if (DirectionOfStudy == Degree.Undergraduate)
+                directionOfStudy = "бакалавриат";
+            else if (DirectionOfStudy == Degree.Specialty)
+                directionOfStudy = "специалитет";
+            else
+                directionOfStudy = "магистратура";
+
+            info[1] = $"Номер зачетной книжки: {Number}. Группа: {Group}. Институт: {Institute}. Направление обучения : {directionOfStudy}.";
+            return info;
+        }
     }
 }

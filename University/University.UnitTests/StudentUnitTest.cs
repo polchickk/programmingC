@@ -35,6 +35,18 @@ namespace University.UnitTests
         {
             return new Student("Polina", "Pavlova", "30603", "116004", "УГИ", Degree.Undergraduate);
         }
+
+        [Test]
+        public void GetInfo_Student_TwoStringsInfo()
+        {
+            var polina = CreateTestStudent();
+
+            var info = polina.GetInfo();
+
+            Assert.AreEqual(2, info.Length);
+            Assert.AreEqual("Polina Pavlova", info[0]);
+            Assert.AreEqual($"Номер зачетной книжки: 30603. Группа: 116004. Институт: УГИ. Направление обучения : бакалавриат.", info[1]); 
+        }
     }
 }
 
