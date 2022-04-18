@@ -125,7 +125,28 @@ namespace Genealogy
 
         static void PrintChildren()
         {
-            throw new NotImplementedException();
+            var person = GetPerson("Введите имя");
+
+            if (person != "")
+            {
+                var children = new List<string>() ;
+
+                foreach (var child in tree.Keys)
+                    if (tree[child] == person)
+                        children.Add(child);
+
+                if (children.Count == 0)
+                    Console.WriteLine("Детей нет");
+                else
+                {
+                    Console.WriteLine("Дети: ");
+
+                    foreach (var child in children)
+                        Console.WriteLine(child);
+
+                    Console.WriteLine();
+                }
+            }
         }
 
         static List<string> GetAncestors(string person)
@@ -154,7 +175,7 @@ namespace Genealogy
                 Console.WriteLine(message);
                 name = Console.ReadLine();
 
-                if (!IsCorrectPerson(name) || name == "") 
+                if (name !="" && !IsCorrectPerson(name) || name == "") 
                 {
                     Console.WriteLine($"Персонажа {name} нет");
                     continue;
