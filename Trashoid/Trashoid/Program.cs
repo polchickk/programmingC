@@ -33,7 +33,10 @@ namespace Trashold
                     big.Enqueue(number);
 
             PrintSequence(small);
-            PrintSequence(big);
+            PrintAndDequeueQueue(big);
+
+            Console.WriteLine(small.Count);
+            Console.WriteLine(big.Count);
 
             Console.ReadKey();
         }
@@ -42,6 +45,14 @@ namespace Trashold
         {
             foreach(var elem in sequence)
                 Console.Write($"{elem} ");
+
+            Console.WriteLine("\n");
+        }
+
+        static void PrintAndDequeueQueue(Queue<int> q)
+        {
+            while(q.Count>0)
+                Console.Write($"{q.Dequeue()} ");
 
             Console.WriteLine("\n");
         }
