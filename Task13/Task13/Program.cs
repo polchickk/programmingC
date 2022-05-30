@@ -13,8 +13,19 @@ namespace Task13
 
         static void Main(string[] args)
         {
+            GetPerson("Введите имя");
             Initialize();
 
+            var months = new List<string> { "январь","февраль","март",
+            "апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"};
+
+            using (var file = new StreamReader("birthdays.txt", Encoding.Default))
+            {
+                while (!file.EndOfStream)
+                {
+
+                }
+            }
         }
         static void Initialize()
         {
