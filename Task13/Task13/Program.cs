@@ -28,14 +28,14 @@ namespace Task13
         static void Main(string[] args)
         {
             var name = GetPerson("Введите имя");
-            var path=Reade
-            var index = GetIndexFromFile("birthday.txt");
+            
+            var index = GetIndexFromFile();
 
             PrintTable(index[name]);
             Console.ReadKey();
         }
 
-        public static Dictionary<string, Dictionary<string, long>> GetIndexFromFile(string pathToFile)
+        public static Dictionary<string, Dictionary<string, long>> GetIndexFromFile()
         {
 
             var res = new Dictionary<string, Dictionary<string, long>>();
