@@ -9,7 +9,7 @@ namespace Task13
 {
     class Program
     {
-       private static readonly Dictionary<int, string> birthdays = new Dictionary<int, string>()
+        private static readonly Dictionary<int, string> birthdays = new Dictionary<int, string>()
         {
             {1, "Январь"},
             {2, "Февраль"},
@@ -27,11 +27,14 @@ namespace Task13
 
         static void Main(string[] args)
         {
-            //GetPerson("Введите имя");
-            //Initialize();
+            var name = GetPerson("Введите имя");
+            var path=Reade
+            var index = GetIndexFromFile("birthday.txt");
 
+            PrintTable(index[name]);
+            Console.ReadKey();
         }
-      
+
         public static Dictionary<string, Dictionary<string, long>> GetIndexFromFile(string pathToFile)
         {
 
@@ -59,10 +62,10 @@ namespace Task13
         public static void PrintTable(Dictionary<string, long> birthdays)
         {
             Console.WriteLine("Месяц    Количество человек, в нем рожденных");
-            foreach (var month in birthdays.Keys && var count in birthdays.Values)
-            {
-                Console.WriteLine($"{month}\t{count}");
-            }
+            foreach (var month in birthdays.Keys)
+                foreach (var count in birthdays.Values)
+                    Console.WriteLine($"{month}\t{count}");
+
         }
         private static (string, string) GetMonthAndName(string str)
         {
@@ -74,57 +77,33 @@ namespace Task13
         }
 
         private static string GetTextMonth(int month) => birthdays[month];
+        static bool IsCorrectPerson(string name)
+        {
+            return birthdays.ContainsValue(name);
+        }
+        static string GetPerson(string message)
+        {
+            string name;
+
+            while (true)
+            {
+                Console.WriteLine(message);
+                name = Console.ReadLine();
+
+                if (name != "" && !IsCorrectPerson(name))
+                {
+                    Console.WriteLine($"Персонажа {name} нет");
+                    continue;
+                }
+
+                return name;
+            }
+
+        }
     }
 }
-        
 
-        //static void Initialize()
-        //{
-        //    string filename;
 
-        //    while (true)
-        //    {
-        //        Console.WriteLine("Введите имя файла");
 
-        //        filename = Console.ReadLine();
 
-        //        if (filename == string.Empty) return;
 
-        //        if (File.Exists(filename))
-        //            break;
-        //        else
-        //            Console.WriteLine("Такого файла нет.\n");
-        //    }
-        //    using (var file = new StreamReader(filename, Encoding.Default))
-        //    {
-        //        while (!file.EndOfStream)
-        //        {
-        //            string[] record = file.ReadLine().Split('-');
-        //            birthdays[record[1].Trim()] = record[0].Trim();
-        //        }
-        //    }
-        //}
-        //static bool IsCorrectPerson(string name)
-        //{
-        //    return birthdays.ContainsKey(name) || birthdays.ContainsValue(name);
-        //}
-        //static string GetPerson(string message)
-        //{
-        //    string name;
-
-        //    while (true)
-        //    {
-        //        Console.WriteLine(message);
-        //        name = Console.ReadLine();
-
-        //        if (name != "" && !IsCorrectPerson(name))
-        //        {
-        //            Console.WriteLine($"Персонажа {name} нет");
-        //            continue;
-        //        }
-
-        //        return name;
-        //    }
-
-        //}
-    
