@@ -79,7 +79,7 @@ namespace Task13
         private static string GetTextMonth(int month) => birthdays[month];
         static bool IsCorrectPerson(string name)
         {
-            return birthdays.ContainsValue(name);
+            return  birthdays.ContainsValue(name);
         }
         static string GetPerson(string message)
         {
