@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Task13
 {
     class Program
     {
-        private static readonly Dictionary<int, string> birthdays = new Dictionary<int, string>()
+        private static readonly Dictionary<int, string> months = new Dictionary<int, string>()
         {
             {1, "Январь"},
             {2, "Февраль"},
@@ -25,14 +26,19 @@ namespace Task13
             {12, "Декабрь"}
         };
 
+        private static Dictionary<string, Dictionary<string, long>> index;
+        private static readonly CultureInfo parsingCulture = new CultureInfo("ru");
         static void Main(string[] args)
         {
-            var name = GetPerson("Введите имя");
-            
-            var index = GetIndexFromFile();
+            index = GetIndexFromFile();
+           
+            while (true)
+            {
+                var name = GetPerson("Введите имя");
 
-            PrintTable(index[name]);
-            Console.ReadKey();
+                PrintTable(index[name]);
+            }
+            
         }
 
         public static Dictionary<string, Dictionary<string, long>> GetIndexFromFile()
@@ -62,24 +68,23 @@ namespace Task13
         public static void PrintTable(Dictionary<string, long> birthdays)
         {
             Console.WriteLine("Месяц    Количество человек, в нем рожденных");
-            foreach (var month in birthdays.Keys)
-                foreach (var count in birthdays.Values)
-                    Console.WriteLine($"{month}\t{count}");
+            foreach (var pair in birthdays)
+                Console.WriteLine($"{pair.Key}\t{pair.Value}");
 
         }
         private static (string, string) GetMonthAndName(string str)
         {
             var raw = str.Split('\t');
             var (date, name) = (raw[0], raw[1]);
-            var monthInt = DateTime.Parse(date).Month;
+            var monthInt = DateTime.Parse(date, parsingCulture).Month;
             var month = GetTextMonth(monthInt);
             return (month, name);
         }
 
-        private static string GetTextMonth(int month) => birthdays[month];
+        private static string GetTextMonth(int month) => months[month];
         static bool IsCorrectPerson(string name)
         {
-            return  birthdays.ContainsValue(name);
+            return  index.ContainsKey(name);
         }
         static string GetPerson(string message)
         {
@@ -90,7 +95,7 @@ namespace Task13
                 Console.WriteLine(message);
                 name = Console.ReadLine();
 
-                if (name != "" && !IsCorrectPerson(name))
+                if (name == "" || !IsCorrectPerson(name))
                 {
                     Console.WriteLine($"Персонажа {name} нет");
                     continue;
